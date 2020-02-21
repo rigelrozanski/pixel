@@ -56,6 +56,42 @@ func (gf *GLFrame) SetBounds(bounds pixel.Rect) {
 	gf.dirty = true
 }
 
+// ShiftView shifts the GLFrame bounds while preserving old content at its
+// original position
+func (gf *GLFrame) ShiftView(shift pixel.Vec) {
+	if shift.Eq(pixel.ZV) {
+		return
+	}
+	newBounds := gf.Bounds().Moved(shift)
+
+	mainthread.Call(func() {
+		oldF := gf.frame
+
+		_, _, w, h := intBounds(newBounds)
+		if w <= 0 {
+			w = 1
+		}
+		if h <= 0 {
+			h = 1
+		}
+		//gf.frame = glhf.NewFrame(w, h, false)
+
+		//// shift content
+		//if oldF != nil {
+		//ox, oy, ow, oh := intBounds(newBounds)
+		//oldF.Blit(
+		//gf.frame,
+		//ox, oy, ox+ow, oy+oh,
+		//ox, oy, ox+ow, oy+oh,
+		//)
+		//}
+	})
+
+	gf.bounds = newBounds
+	gf.pixels = nil
+	gf.dirty = true
+}
+
 // Bounds returns the current GLFrame's bounds.
 func (gf *GLFrame) Bounds() pixel.Rect {
 	return gf.bounds
