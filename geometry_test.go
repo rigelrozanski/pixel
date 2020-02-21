@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/faiface/pixel"
+	"github.com/rigelrozanski/pixel"
 	"github.com/stretchr/testify/assert"
 )
 

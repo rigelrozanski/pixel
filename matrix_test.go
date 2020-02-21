@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/faiface/pixel"
+	"github.com/rigelrozanski/pixel"
 )
 
 func BenchmarkMatrix(b *testing.B) {
