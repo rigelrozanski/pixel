@@ -1,4 +1,4 @@
-module github.com/faiface/pixel
+module github.com/rigelrozanski/pixel
 
 go 1.12
 
